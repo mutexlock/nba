@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { presetTeams } from '../data/teams';
 import { getTeamById } from '../data/teams';
 import { simulateBattle, getBattleShareText } from '../utils/battle';
+import { generateBattleReport, generateShareImage } from '../utils/battleReport';
 import { SimulationResult } from '../types';
 import { useStore } from '../stores/appStore';
 
@@ -11,7 +12,12 @@ export default function Battle() {
   const [teamBId, setTeamBId] = useState<string>('');
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [isSimulating, setIsSimulating] = useState(false);
+  const [reportStyle, setReportStyle] = useState<'exciting' | 'professional' | 'humor'>('exciting');
+  const [shareImage, setShareImage] = useState<string>('');
+  const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const addBattleRecord = useStore(state => state.addBattleRecord);
+  const customTeams = useStore(state => state.customTeams);
+  const shareRef = useRef<HTMLDivElement>(null);
 
   const handleSimulate = () => {
     if (!teamAId || !teamBId) return;

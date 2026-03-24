@@ -39,6 +39,48 @@ function Home() {
         </div>
       </section>
       
+      {/* Classic Battles */}
+      <section>
+        <h3 className="text-2xl font-bold mb-6 text-center">⚔️ 经典战役</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Link
+            to="/classic-battles"
+            className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-xl p-6 hover:border-purple-500/60 transition-all group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-2xl">
+                ⚔️
+              </div>
+              <div className="flex-1">
+                <h4 className="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
+                  历史经典战役
+                </h4>
+                <p className="text-sm text-gray-400">重温NBA历史上的巅峰对决</p>
+              </div>
+              <span className="text-purple-400 text-xl">→</span>
+            </div>
+          </Link>
+          
+          <Link
+            to="/my-teams"
+            className="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/30 rounded-xl p-6 hover:border-blue-500/60 transition-all group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-2xl">
+                🏆
+              </div>
+              <div className="flex-1">
+                <h4 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+                  自建球队
+                </h4>
+                <p className="text-sm text-gray-400">从球员库选择创建你的梦幻球队</p>
+              </div>
+              <span className="text-blue-400 text-xl">→</span>
+            </div>
+          </Link>
+        </div>
+      </section>
+      
       {/* Featured Teams */}
       <section>
         <h3 className="text-2xl font-bold mb-6 text-center">🏆 经典球队</h3>

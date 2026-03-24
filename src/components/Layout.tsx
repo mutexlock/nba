@@ -5,7 +5,9 @@ const navItems = [
   { path: '/', label: '首页', icon: '🏠' },
   { path: '/players', label: '球员库', icon: '👥' },
   { path: '/teams', label: '球队', icon: '🏀' },
-  { path: '/battle', label: '对战', icon: '⚔️' },
+  { path: '/classic-battles', label: '经典战役', icon: '⚔️' },
+  { path: '/my-teams', label: '我的球队', icon: '🏆' },
+  { path: '/battle', label: '对战', icon: '🎮' },
   { path: '/battle-record', label: '记录', icon: '📊' },
 ];
 

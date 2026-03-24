@@ -8,6 +8,9 @@ import Teams from './pages/Teams';
 import Battle from './pages/Battle';
 import PlayerDetail from './pages/PlayerDetail';
 import BattleRecord from './pages/BattleRecord';
+import ClassicBattles from './pages/ClassicBattles';
+import MyTeams from './pages/MyTeams';
+import CreateTeam from './pages/CreateTeam';
 
 function App() {
   const initialize = useStore((state) => state.initialize);
@@ -26,6 +29,10 @@ function App() {
           <Route path="teams" element={<Teams />} />
           <Route path="battle" element={<Battle />} />
           <Route path="battle-record" element={<BattleRecord />} />
+          <Route path="classic-battles" element={<ClassicBattles />} />
+          <Route path="my-teams" element={<MyTeams />} />
+          <Route path="create-team" element={<CreateTeam />} />
+          <Route path="create-team/:teamId" element={<CreateTeam />} />
         </Route>
       </Routes>
     </BrowserRouter>
