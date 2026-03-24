@@ -43,8 +43,15 @@ export default function ClassicBattles() {
       };
       addBattleRecord(record);
       
-      // 跳转到对战结果页面
-      navigate('/battle');
+      // 传递战役信息并跳转
+      navigate('/battle', { 
+        state: { 
+          battle: battle.name,
+          background: battle.background,
+          teamA: teamA.id,
+          teamB: teamB.id
+        } 
+      });
     }
     
     setIsSimulating(false);

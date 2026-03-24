@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { presetTeams } from '../data/teams';
 import { getTeamById } from '../data/teams';
 import { simulateBattle, getBattleShareText } from '../utils/battle';
@@ -8,9 +8,14 @@ import { SimulationResult } from '../types';
 import { useStore } from '../stores/appStore';
 
 export default function Battle() {
-  const [teamAId, setTeamAId] = useState<string>('');
-  const [teamBId, setTeamBId] = useState<string>('');
+  const location = useLocation();
+  const battleInfo = location.state as { battle?: string; background?: string; teamA?: string; teamB?: string } | null;
+  
+  const [teamAId, setTeamAId] = useState<string>(battleInfo?.teamA || '');
+  const [teamBId, setTeamBId] = useState<string>(battleInfo?.teamB || '');
   const [result, setResult] = useState<SimulationResult | null>(null);
+  const battleName = battleInfo?.battle || '';
+  const battleBackground = battleInfo?.background || '';
   const [isSimulating, setIsSimulating] = useState(false);
   const [reportStyle, setReportStyle] = useState<'exciting' | 'professional' | 'humor'>('exciting');
   const [shareImage, setShareImage] = useState<string>('');
@@ -88,8 +93,17 @@ export default function Battle() {
       <div className="max-w-4xl mx-auto">
         {/* 页面标题 */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">🏀 NBA对战模拟器</h1>
-          <p className="text-gray-400">选择两支球队，模拟世纪大战</p>
+          {battleName ? (
+            <>
+              <h1 className="text-4xl font-bold text-white mb-2">⚔️ {battleName}</h1>
+              <p className="text-orange-300 text-lg mb-2">{battleBackground}</p>
+            </>
+          ) : (
+            <>
+              <h1 className="text-4xl font-bold text-white mb-2">🏀 NBA对战模拟器</h1>
+              <p className="text-gray-400">选择两支球队，模拟世纪大战</p>
+            </>
+          )}
         </div>
 
         {/* 球队选择 */}
@@ -191,6 +205,13 @@ export default function Battle() {
         {/* 比赛结果 */}
         {result && teamA && teamB && (
           <div className="bg-white/10 backdrop-blur rounded-2xl p-6 mb-8 animate-fade-in">
+            {battleName && (
+              <div className="text-center mb-4">
+                <span className="bg-orange-500/20 text-orange-300 px-4 py-1 rounded-full text-sm">
+                  {battleName}
+                </span>
+              </div>
+            )}
             <div className="text-center mb-6">
               <h2 className="text-3xl font-bold text-white mb-2">
                 {result.winner === 'A' && `🏆 ${teamA.name} 获胜!`}
