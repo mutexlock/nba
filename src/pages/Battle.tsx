@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { presetTeams } from '../data/teams';
 import { getTeamById } from '../data/teams';
 import { simulateBattle, getBattleShareText } from '../utils/battle';
@@ -236,26 +237,23 @@ export default function Battle() {
               </div>
             </div>
 
-            {/* 四节比分 */}
+            {/* 四节比分图表 */}
             <div className="bg-white/5 rounded-xl p-4 mb-6">
-              <h3 className="text-white font-bold mb-3">📊 四节比分</h3>
-              <div className="grid grid-cols-5 gap-2 text-center">
-                <div className="text-gray-400">节次</div>
-                <div className="text-blue-300">Q1</div>
-                <div className="text-blue-300">Q2</div>
-                <div className="text-blue-300">Q3</div>
-                <div className="text-blue-300">Q4</div>
-                
-                <div className="text-white">{teamA.shortName}</div>
-                {result.teamA.quarters.map((q, i) => (
-                  <div key={i} className="text-white font-bold">{q}</div>
-                ))}
-                
-                <div className="text-white">{teamB.shortName}</div>
-                {result.teamB.quarters.map((q, i) => (
-                  <div key={i} className="text-white font-bold">{q}</div>
-                ))}
-              </div>
+              <h3 className="text-white font-bold mb-3">📊 四节比分走势</h3>
+              <ResponsiveContainer width="100%" height={200}>
+                <BarChart data={[
+                  { name: 'Q1', [teamA.shortName]: result.teamA.quarters[0], [teamB.shortName]: result.teamB.quarters[0] },
+                  { name: 'Q2', [teamA.shortName]: result.teamA.quarters[1], [teamB.shortName]: result.teamB.quarters[1] },
+                  { name: 'Q3', [teamA.shortName]: result.teamA.quarters[2], [teamB.shortName]: result.teamB.quarters[2] },
+                  { name: 'Q4', [teamA.shortName]: result.teamA.quarters[3], [teamB.shortName]: result.teamB.quarters[3] },
+                ]}>
+                  <XAxis dataKey="name" stroke="#666" />
+                  <YAxis stroke="#666" />
+                  <Tooltip contentStyle={{ background: '#1a1a2e', border: 'none' }} />
+                  <Bar dataKey={teamA.shortName} fill="#3b82f6" />
+                  <Bar dataKey={teamB.shortName} fill="#ef4444" />
+                </BarChart>
+              </ResponsiveContainer>
             </div>
 
             {/* 球员数据 */}
