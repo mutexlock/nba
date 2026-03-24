@@ -372,14 +372,14 @@ export const players: Player[] = [
     ws: 177.2
   },
   {
-    id: 'shaquille-o\'neal',
+    id: 'shaquille-oneal',
     name: '沙奎尔-奥尼尔',
     nameEn: 'Shaquille O\'Neal',
     number: 34,
     position: 'C',
     team: 'Los Angeles Lakers',
     era: '00s',
-    avatar: '/images/players/dennis-rodman.png',
+    avatar: '/images/players/shaquille-oneal.png',
     stats: { points: 23.7, rebounds: 10.9, assists: 2.5, steals: 0.6, blocks: 2.3, fgPct: 58.2, threePct: 4.5, games: 1207 },
     rating: 96,
     offenseRating: 95,

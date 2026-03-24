@@ -190,7 +190,7 @@ export const useStore = create<AppState>()(
       storage: {
         getItem: async (name) => {
           const value = await localforage.getItem(name);
-          return value ?? null;
+          return (value as any) ?? null;
         },
         setItem: async (name, value) => {
           await localforage.setItem(name, value);
