@@ -18,8 +18,8 @@ export function simulateBattle(teamA: Team, teamB: Team): SimulationResult {
   const ratingA = calculateTeamRating(playersA);
   const ratingB = calculateTeamRating(playersB);
   
-  // 基础得分（考虑评分差异）
-  const baseScore = 85;
+  // 基础得分（每节约 20-35 分，四节共 80-120 分）
+  const baseScore = 25;
   const ratingDiff = (ratingA - ratingB) / 100;
   
   // 生成四节比分
@@ -30,13 +30,13 @@ export function simulateBattle(teamA: Team, teamB: Team): SimulationResult {
   let totalB = 0;
   
   for (let i = 0; i < 4; i++) {
-    // 每一节有随机波动
-    const variance = Math.random() * 20 - 10;
-    const quarterA = Math.round(baseScore + ratingDiff * 15 + variance + Math.random() * 10);
-    const quarterB = Math.round(baseScore - ratingDiff * 15 + variance + Math.random() * 10);
+    // 每一节有随机波动（-5 到 +10）
+    const variance = Math.random() * 15 - 5;
+    const quarterA = Math.round(baseScore + ratingDiff * 5 + variance + Math.random() * 5);
+    const quarterB = Math.round(baseScore - ratingDiff * 5 + variance + Math.random() * 5);
     
-    quartersA.push(Math.max(15, quarterA));
-    quartersB.push(Math.max(15, quarterB));
+    quartersA.push(Math.max(18, Math.min(35, quarterA)));
+    quartersB.push(Math.max(18, Math.min(35, quarterB)));
     totalA += quartersA[i];
     totalB += quartersB[i];
   }
