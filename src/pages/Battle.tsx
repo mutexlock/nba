@@ -16,6 +16,22 @@ export default function Battle() {
   const handleSimulate = () => {
     if (!teamAId || !teamBId) return;
     
+    // 检查球队人数是否至少5人
+    const teamA = getTeamById(teamAId);
+    const teamB = getTeamById(teamBId);
+    
+    if (!teamA || !teamB) return;
+    
+    if (teamA.players.length < 5) {
+      alert('球队至少需要5名球员');
+      return;
+    }
+    
+    if (teamB.players.length < 5) {
+      alert('球队至少需要5名球员');
+      return;
+    }
+    
     setIsSimulating(true);
     
     // 模拟延迟，增加仪式感
