@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStore } from '../stores/appStore';
 import { getPlayerById } from '../data/players';
@@ -105,10 +105,10 @@ export default function MyTeams() {
                   <div className="mb-4">
                     <p className="text-gray-300 text-sm mb-3">阵容 ({players.length}/15)</p>
                     <div className="space-y-2">
-                      {players.slice(0, 5).map((player): React.ReactNode => (
+                      {players.slice(0, 5).map((player, idx): React.ReactNode => (
                         <div key={player.id} className="flex items-center gap-2 text-sm">
                           <span className="text-gray-500 w-5 text-xs">
-                            {['PG', 'SG', 'SF', 'PF', 'C'][index] || ''}
+                            {['PG', 'SG', 'SF', 'PF', 'C'][idx] || ''}
                           </span>
                           <span className="text-gray-300 flex-1 truncate">{player.name}</span>
                           <span className={player.rating >= 90 ? 'text-yellow-400' : 'text-gray-400'}>

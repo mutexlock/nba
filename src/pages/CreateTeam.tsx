@@ -154,8 +154,8 @@ export default function CreateTeam() {
     setIsSubmitting(true);
     
     // 计算球队评分
-    const players = selectedPlayers.map(id => getPlayerById(id)).filter(Boolean);
-    const avgRating = Math.round(players.reduce((sum, p: any) => sum + p!.rating, 0) / players.length);
+    const players = selectedPlayers.map(id => getPlayerById(id)).filter((p): p is NonNullable<typeof p> => Boolean(p));
+    const avgRating = Math.round(players.reduce((sum, p) => sum + p.rating, 0) / players.length);
     
     const teamData = {
       id: editingTeam?.id || `custom-${Date.now()}`,
@@ -180,7 +180,7 @@ export default function CreateTeam() {
     }, 500);
   };
 
-  const selectedPlayerObjects = selectedPlayers.map(id => getPlayerById(id)).filter(Boolean);
+  const selectedPlayerObjects = selectedPlayers.map(id => getPlayerById(id)).filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4 md:p-8">
