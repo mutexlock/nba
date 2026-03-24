@@ -1203,7 +1203,8 @@ export const allPlayers: Player[] = [
   ...players90s,
   ...players00s,
   ...players10s,
-  ...players20s
+  ...players20s,
+  ...additionalPlayers
 ];
 
 export const getPlayerById = (id: string): Player | undefined => {
@@ -1214,8 +1215,9 @@ export const getPlayersByEra = (era: string): Player[] => {
   return allPlayers.filter(p => p.era === era);
 };
 
-// 补充预设球队需要的其他球员
-export const additionalPlayers: Player[] = [
+export const getPlayersByPosition = (position: string): Player[] => {
+  return allPlayers.filter(p => p.position === position);
+};
   // 96公牛
   {
     id: 'dennis-rodman',
@@ -1343,7 +1345,7 @@ export const additionalPlayers: Player[] = [
     id: 'robert-parish',
     name: '罗伯特-帕里什',
     nameEn: 'Robert Parish',
-    number: 00,
+    number: 0,
     position: 'C',
     team: 'Boston Celtics',
     era: '80s',
@@ -1550,25 +1552,14 @@ export const additionalPlayers: Player[] = [
   }
 ];
 
-// 更新 allPlayers 包含补充的球员
-export const allPlayersFull: Player[] = [
-  ...players,
-  ...players80s,
-  ...players90s,
-  ...players00s,
-  ...players10s,
-  ...players20s,
-  ...additionalPlayers
-];
-
 export const getPlayerById = (id: string): Player | undefined => {
-  return allPlayersFull.find(p => p.id === id);
+  return allPlayers.find(p => p.id === id);
 };
 
 export const getPlayersByEra = (era: string): Player[] => {
-  return allPlayersFull.filter(p => p.era === era);
+  return allPlayers.filter(p => p.era === era);
 };
 
 export const getPlayersByPosition = (position: string): Player[] => {
-  return allPlayersFull.filter(p => p.position === position);
+  return allPlayers.filter(p => p.position === position);
 };

@@ -120,6 +120,3 @@ export const getTeamById = (id: string): Team | undefined => {
 export const getTeamsByEra = (era: string): Team[] => {
   return presetTeams.filter(t => t.era === era);
 };
-
-// 导出所有球员数据供外部使用
-export { players as allPlayers, getPlayerById, getPlayersByEra, getPlayersByPosition, allPlayersFull } from './players';
